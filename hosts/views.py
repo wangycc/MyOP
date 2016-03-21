@@ -1,6 +1,6 @@
 #_*_coding:utf-8_*_
 __author__ = 'YiChen Wang'
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,7 @@ def index(request):
 
  #   return HttpResponse('ok')
     return render(request,'index.html')
+    #return render_to_response("index.html", locals(),context_instance=RequestContext(request))
 
 @login_required
 def cmdb_index(request):
@@ -53,4 +54,10 @@ def access_logout(request):
 
     return HttpResponseRedirect('/')
 
+def hosts_mgr(request):
 
+    return render(request,"hosts/host_mgr.html")
+
+def multi_cmd(request):
+
+    return render(request,"hosts/multi_cmd.html")

@@ -65,7 +65,7 @@ font.wordhighlight_word9{display:inline;background:rgba(204,102,153,1);color:bla
           </button>
           <a class="navbar-brand" href="{% url 'index' %}">运维平台</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar-menu" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="{% url "dashboard" %}">Dashboard</a></li>
             <li><a href="{% url "hosts" %}">主机</a></li>
@@ -77,7 +77,7 @@ font.wordhighlight_word9{display:inline;background:rgba(204,102,153,1);color:bla
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">﻿{{ request.user.name }} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">{{ name }}</a></li>
+                <li><a href="#">{{ request.path }}</a></li>
                 <li><a href="{% url "logout" %}">Logout</a></li>
 
               </ul>
@@ -95,7 +95,7 @@ font.wordhighlight_word9{display:inline;background:rgba(204,102,153,1);color:bla
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div id='nav-sidebar' class="col-sm-3 col-md-2 sidebar">
             {% block sidebar %}
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
@@ -147,4 +147,38 @@ font.wordhighlight_word9{display:inline;background:rgba(204,102,153,1);color:bla
 
   
 
-<div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="http://v3.bootcss.com/examples/dashboard/#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div></body></html>
+<div id="haloword-lookup" class="ui-widget-content ui-draggable">
+
+<div id="haloword-title">
+    <span id="haloword-word"></span>
+    <a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a>
+    <audio id="haloword-audio"></audio>
+    <div id="haloword-control-container">
+        <a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a>
+        <a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a>
+        <a href="http://v3.bootcss.com/examples/dashboard/#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a>
+        <a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a>
+    </div><br style="clear: both;">
+</div>
+    <div id="haloword-content">
+
+</div>
+
+    </div>
+  {% block bottom-js %}
+
+  {% endblock %}
+    <script style="text/javascript">
+        $(document).ready(function(){
+
+            $("#navbar-menu a[href='{{ request.path }}']").parent().addClass("active");
+            $("#nav-sidebar a[href='{{ request.path }}']").parent().addClass('active');
+            $("#nav-sidebar a[href='{{ request.path }}']").parent().siblings().removeClass('active');
+                //$(this).parent().addClass("active");
+                //$(this).parent().siblings().removeClass("active);
+            //})
+        });
+
+    </script>
+  </body>
+</html>

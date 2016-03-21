@@ -1,6 +1,13 @@
 {% extends "base.html" %}
-{% block sidebar %}
 
+{% block sidebar %}
+    <ul class="nav nav-sidebar">
+            <li class="active"><a href="{% url 'hosts_mgr' %}">主机 <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'multi_cmd' %}">批量命令</a></li>
+            <li><a href="#">文件分发</a></li>
+            <li><a href="#">计划任务</a></li>
+            <li><a href="#">操作审计</a></li>
+          </ul>
 {% endblock %}
 
 
@@ -8,4 +15,14 @@
 
     hosts
 
+{% endblock %}
+
+{% block bottom-js %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#navbar-menu a[href='"+ "{% url 'hosts' %}" +"']").parent().addClass("active");
+            //解决跳转之后页面高亮显示
+        })
+    </script>
 {% endblock %}

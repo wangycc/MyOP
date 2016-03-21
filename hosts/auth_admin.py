@@ -1,6 +1,6 @@
 #_*_coding:utf8_*_
 from django.contrib import admin
-__Author__:YiChen Wang
+#__Author__:YiChen Wang
 
 from django import forms
 from django.contrib import admin

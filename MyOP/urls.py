@@ -18,5 +18,5 @@ urlpatterns = patterns('',
     url(r'^release/',views.release_index,name="release"),
     url(r'^monitor/',views.monitor_index,name="monitor"),
     url(r'^dashboard/',views.dashboard_index,name='dashboard'),
-    url(r'^hosts/',views.hosts_index,name='hosts'),
+    #url(r'^hosts/',views.hosts_index,name='hosts'),
 )
