@@ -1,3 +1,4 @@
+#_*_coding:utf-8_*_
 from django.db import models
 from myauth import UserProfile
 # Create your models here.
@@ -12,7 +13,7 @@ class Host(models.Model):
         ('linux','Linux'),
         ('windows','Windows'),
     )
-    system_type = models.CharField(choices=system_type_choice)
+    system_type = models.CharField(choices=system_type_choice,max_length=16)
     enabled = models.BooleanField(default=True)
     date = models.DateField(auto_now_add=True)
     memo = models.TextField(blank=True,null=True)
@@ -59,10 +60,12 @@ class HostGroup(models.Model):
 
 class BindHostToUser(models.Model):
     """绑定主机到用户"""
-    host = models.Foreignkey(host)
-    host_user = models.ForeignKey(host_user)
-    host_groups = models.ManyToManyField(host_groups)
+    host = models.ForeignKey(Host)
+    host_user = models.ForeignKey(HostUser)
+    host_groups = models.ManyToManyField(HostGroup)
 
     class Meta:
-
         unique_together = ('host',)
+
+    def __unicode__(self):
+        return "%s:%s"%(self.host.hostname,self.host_user.username)

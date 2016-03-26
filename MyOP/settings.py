@@ -69,7 +69,7 @@ AUTH_USER_MODEL = 'hosts.UserProfile'
 
 #关联我们自定义的认证系统app名.表名,他会去数据库对应的app的表查找数据
 
-LOGIN_URL='/login'
+LOGIN_URL='/login/'
 #logout方法定义URL跳转
 
 # Internationalization
@@ -94,12 +94,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics'),
 ]
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
-TEMPLATE_PATH = os.path.join(BASE_DIR,'templates')
+#TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+#TEMPLATE_PATH = os.path.join(BASE_DIR,'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_PATH],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
