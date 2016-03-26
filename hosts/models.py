@@ -58,6 +58,9 @@ class HostGroup(models.Model):
     name = models.CharField(max_length=64,unique=True)
     memo = models.TextField(blank=True,null=True)
 
+    def __unicode__(self):
+        return self.name
+
 class BindHostToUser(models.Model):
     """绑定主机到用户"""
     host = models.ForeignKey(Host)
@@ -69,3 +72,7 @@ class BindHostToUser(models.Model):
 
     def __unicode__(self):
         return "%s:%s"%(self.host.hostname,self.host_user.username)
+
+    def get_groups(self):
+
+        return ','.join([ i.name for i in self.host_groups.select_related() ])

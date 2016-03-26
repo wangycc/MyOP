@@ -23,6 +23,11 @@
 
             $("#navbar-menu a[href='"+ "{% url 'hosts' %}" +"']").parent().addClass("active");
             //解决跳转之后页面高亮显示
+            $("#host_group a").click(function(){
+
+                    $(this).addClass('active');
+                    $(this).siblings.removeClass('active');
+            })
         })
     </script>
 {% endblock %}
